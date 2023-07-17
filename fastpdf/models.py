@@ -22,7 +22,7 @@ class EngineEnum(str, Enum):
 
 @dataclass
 class StyleFile:
-    format: str
+    format: str = field(default="css")
     description: Optional[str] = field(default="fastpdf-python StyleFile")
     stylesheet_file: Optional[bytes] = field(default=None)
     id: Optional[str] = field(default=None)
@@ -48,7 +48,7 @@ class ImageFile:
 @dataclass
 class Template:
     name: str
-    format: str
+    format: str = field(default="html")
     description: Optional[str] = field(default="fastpdf-python Template")
     id: Optional[str] = field(default=None)
     #style_files: list[StyleFile]
