@@ -171,6 +171,57 @@ In this example, `{% if user_premium %}` starts the if statement, and `{% endif 
 If `user_premium` is true, the "Welcome, premium user!" message will be included in the generated PDF. 
 Otherwise, the "Welcome, regular user!" message will be included.
 
+## Stylesheets
+
+<Note>
+    Please ensure that your stylesheets are written purely in CSS. As of now, FastPDF does not support precompiled CSS languages 
+    like SCSS, or CSS frameworks like Tailwind. 
+    Stick to standard CSS to ensure compatibility and successful rendering.
+</Note>
+
+You can do this in one of two ways: by using a separate stylesheet, or by using inline CSS. 
+
+The latter works as usual, by either
+setting the `style` property html tags, or by writing your css classes in the header of the template:
+
+<CodeGroup title="A template with style">
+
+```html {{ title: 'HTML' }}
+<html>
+<head>
+    my-class {
+        color: #f43f54;
+        font-size: 12px;
+        font-weight: bold;
+    }
+</head>
+<body>
+    <p class='my-class'>Welcome, {{name}}!</p>
+    <p style='color: #ccc'> Goodbye ! </p>
+</body>
+</html>
+```
+
+</CodeGroup>
+
+Alternatively, you can use the `add_stylesheet()` method to add a stylesheet to your template:
+
+<CodeGroup title="A template with style">
+
+```python {{ title: 'Python' }}
+from fastpdf import StylesheetFile
+
+stylesheet_path = "styles.css"
+stylesheet_data = StylesheetFile(format="css")
+template_id = template["id"]
+client.add_stylesheet(template_id, stylesheet_path, stylesheet_data)
+
+```
+
+</CodeGroup>
+
+Your template will now be rendered with style !
+
 ## Adding an image
 
 FastPDF allows you to add images to your templates, which can then be rendered into your final PDF documents. Here's how you can accomplish this.
@@ -222,6 +273,76 @@ client.save(document, "path/to/image-document.pdf")
 ```
 
 </CodeGroup>
+
+## Custom Header and Footer
+
+By default, FastPDF will include a header, composed of the document title and the date, and a footer with page numbers. 
+You can turn them on and off separately when adding your [Template](templates#template) or during rendering with the 
+[RenderOptions](render#render-options).
+
+It is also possible to add custom headers and footers to your PDF documents. These headers and footers can include images, and
+dynamic content such as the current page number, total number of pages, and the current date. Let's take a look at how to do this.
+
+Firstly, let's create a new template:
+
+<CodeGroup title="A simple template">
+
+```python {{ title: 'Python' }}
+template_content = """
+<html>
+<body>
+    <h1>{{title}}</h1>
+    <p>{{content}}</p>
+</body>
+</html>
+""".encode()
+template_data = Template(name="customer-header-footer-document", format="html")
+```
+
+</CodeGroup>
+
+You might have noticed that we have not added the template yet. It is because we need to define our header and footer first.
+Headers and footers comes with [special HTML classes](templates#header-and-footer) that can be used to inject printing values into them.
+We will use them to set the page number.
+
+
+<CodeGroup title="Custom header and footer">
+
+```python {{ title: 'Python' }}
+header_content = """
+<div style="text-align: center; padding: 10px; font-size: 8px;">
+    <h2>{{header_note}}</h2>
+</div>
+""".encode()
+footer_content = """
+<div style="text-align: center; margin: auto; padding: 10px; font-size: 8px;">
+    <span class="pageNumber"></span>
+</div>
+""".encode()
+template = client.add_template(template_content, template_data, 
+                               header_data=header_content, 
+                               footer_data=footer_content)
+```
+
+</CodeGroup>
+
+Now, when you render the PDF, pass the `header_note`, `title` and `content` in your data:
+
+<CodeGroup title="Rendering custom header document">
+
+```python {{ title: 'Python' }}
+template_id = template["id"]
+document_data = { 
+    'title': "My document",  
+    'content': "My document content",  
+    'header_note': "This is my favorite header",  
+}
+document = client.render_template(template_id, document_data)
+client.save(document, "path/to/custom-header-document.pdf")
+```
+
+</CodeGroup>
+
 
 ## Generating Multiple PDFs
 
