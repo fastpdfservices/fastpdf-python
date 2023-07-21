@@ -52,7 +52,7 @@ Please refer to the [documentation](https://docs.fastpdfservice.com) for more de
 ## Creating a Basic Template
 
 Creating a basic template is simple. Let's start by creating an HTML document with a placeholder for a `name` variable.
-Then, you'll need to create a [Template](templates#template) object and set `name` and `format`.
+Then, you'll need to create a [Template](https://docs.fastpdfservice.com/templates#template) object and set `name` and `format`.
 
 
 <CodeGroup title="Creating a basic template">
@@ -82,8 +82,9 @@ In our data object, we set a value for the `name` variable that we defined in ou
 <CodeGroup title="Rendering our basic template">
 
 ```python {{ title: 'Python' }}
-template_id = template["id"]
 document_data = { 'name': 'John' }
+
+template_id = template["id"]
 document = client.render_template(template_id, document_data)
 ```
 
@@ -134,9 +135,11 @@ Next, we define our rendering_data by associating a list of item value to the `i
 <CodeGroup title="Rendering our For Loop template">
 
 ```python {{ title: 'Python' }}
-template_id = template["id"]
 document_data = { 'items': ["First item", "Second item", "Last item"] }
+
+template_id = template["id"]
 document = client.render_template(template_id, document_data)
+# Save to disk, if needed
 client.save(document, "path/to/loop-document.pdf")
 ```
 
@@ -213,9 +216,9 @@ from fastpdf import StylesheetFile
 
 stylesheet_path = "styles.css"
 stylesheet_data = StylesheetFile(format="css")
+
 template_id = template["id"]
 client.add_stylesheet(template_id, stylesheet_path, stylesheet_data)
-
 ```
 
 </CodeGroup>
@@ -266,10 +269,13 @@ Finally, we render our document. As usual, we define our rendering data object w
 <CodeGroup title="Rendering our image template">
 
 ```python {{ title: 'Python' }}
+from fastpdf import ImageFile
+
+image_path="my-logo.png"
+image_data = ImageFile(format="png", uri="my_favourite_logo")
+
 template_id = template["id"]
-document_data = { 'name': "Jane" }
-document = client.render_template(template_id, document_data)
-client.save(document, "path/to/image-document.pdf")
+res = client.add_image(template_id, image_path, image_data)
 ```
 
 </CodeGroup>
@@ -277,8 +283,8 @@ client.save(document, "path/to/image-document.pdf")
 ## Custom Header and Footer
 
 By default, FastPDF will include a header, composed of the document title and the date, and a footer with page numbers. 
-You can turn them on and off separately when adding your [Template](templates#template) or during rendering with the 
-[RenderOptions](render#render-options).
+You can turn them on and off separately when adding your [Template](https://docs.fastpdfservice.com/templates#template) or during rendering with the 
+[RenderOptions](https://docs.fastpdfservice.com/render#render-options).
 
 It is also possible to add custom headers and footers to your PDF documents. These headers and footers can include images, and
 dynamic content such as the current page number, total number of pages, and the current date. Let's take a look at how to do this.
@@ -302,7 +308,7 @@ template_data = Template(name="customer-header-footer-document", format="html")
 </CodeGroup>
 
 You might have noticed that we have not added the template yet. It is because we need to define our header and footer first.
-Headers and footers comes with [special HTML classes](templates#header-and-footer) that can be used to inject printing values into them.
+Headers and footers comes with [special HTML classes](https://docs.fastpdfservice.comtemplates#header-and-footer) that can be used to inject printing values into them.
 We will use them to set the page number.
 
 
@@ -331,13 +337,15 @@ Now, when you render the PDF, pass the `header_note`, `title` and `content` in y
 <CodeGroup title="Rendering custom header document">
 
 ```python {{ title: 'Python' }}
-template_id = template["id"]
 document_data = { 
     'title': "My document",  
     'content': "My document content",  
     'header_note': "This is my favorite header",  
 }
+
+template_id = template["id"]
 document = client.render_template(template_id, document_data)
+# Save to disk, if needed
 client.save(document, "path/to/custom-header-document.pdf")
 ```
 
@@ -372,7 +380,7 @@ template= client.add_template(template_content, template_data)
 Here, the template contains placeholders for user data (name and email). Next, we will prepare our data array.
 Each element of the array corresponds to one document. Here we will render 3 documents.
 
-<CodeGroup title="List of data">
+<CodeGroup title="List of data objects">
 
 ```python {{ title: 'Python' }}
 users = [
@@ -386,7 +394,7 @@ users = [
 
 Finally, we can call the `render_template_many()` method with our template id and batch data.
 
-<CodeGroup title="List of data">
+<CodeGroup title="Rendering of multiple Documents">
 
 ```python {{ title: 'Python' }}
 template_id = template["id"]

@@ -59,7 +59,7 @@ class Template:
     
     landscape: Optional[bool] = field(default=None)
     paper_format: Optional[str] = field(default=None)
-    background: Optional[bool] = field(default=None)
+    print_background: Optional[bool] = field(default=None)
     page_range: Optional[str] = field(default=None)
     scale: Optional[float] = field(default=None)
     
@@ -84,7 +84,7 @@ class RenderOptions:
     
     landscape: Optional[bool] = field(default=None)
     paper_format: Optional[str] = field(default=None)
-    background: Optional[bool] = field(default=None)
+    print_background: Optional[bool] = field(default=None)
     page_range: Optional[str] = field(default=None)
     scale: Optional[float] = field(default=None)
     
