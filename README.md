@@ -18,7 +18,7 @@ Welcome to **fastpdf** Python Package, the versatile and quick solution for your
 
 ## Getting Started
 
-Before you start with the fastpdf Python Package, make sure you have Python 3.6+ installed on your machine.
+Before you start with the fastpdf Python Package, make sure you have Python 3.7+ installed on your machine.
 
 To use `fastpdf`, you'll first need to register an account to [https://fastpdfservice.com](https://fastpdfservice.com), and get your API key. 
 
