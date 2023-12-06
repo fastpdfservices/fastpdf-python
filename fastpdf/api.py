@@ -111,8 +111,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             is_valid = client.validate_token()
         """
@@ -134,8 +134,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             splitted_pdf_content = client.split('path/to/your.pdf', [3, 6])
         """
@@ -161,8 +161,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             zip_content = client.split_zip('path/to/your.pdf', [[1, 3], [4, 6]])
         """
@@ -199,8 +199,8 @@ class PDFClient:
         :param file_path: (Optional) Path to the file where to save the content. If not provided, returns a BytesIO object.
         :return: BytesIO object if file_path is not provided, None otherwise.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             pdf_content = client.url_to_pdf('https://www.example.com')
 
@@ -227,8 +227,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             pdf_content_with_new_metadata = client.edit_metadata('path/to/your.pdf', {'Title': 'New Title', 'Author': 'New Author'})
         """
@@ -254,8 +254,8 @@ class PDFClient:
         Raises ValueError if less than 2 or more than 100 files are given.
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             merged_pdf_content = client.merge(['path/to/first.pdf', 'path/to/second.pdf'])
         """
@@ -290,8 +290,8 @@ class PDFClient:
         Raises ValueError if an unsupported output format is given.
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             image_content = client.to_image('path/to/your.pdf', 'png')
             client.save("path/to/output.png", image_content)
@@ -321,8 +321,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             compressed_pdf_content = client.compress('path/to/your.pdf', options={'quality': 'high'})
         """
@@ -375,8 +375,8 @@ class PDFClient:
         Raises ValueError if the provided barcode format is not supported.
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             barcode = client.render_barcodes('1234567890')
             client.save(barcode, "path/to/barcode.pdf")
@@ -418,8 +418,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             rendered_image = client.render_image('path/to/image.png')
             client.save(rendered_image, "path/to/image.pdf")
@@ -452,8 +452,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             rendered_image = client.render_image_from_id('image_id')
             client.save(rendered_image, "path/to/image.pdf")
@@ -568,8 +568,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key'à
             template_data = Template(name="test-tmplt", format="html")
             # Render
@@ -621,8 +621,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             template_data = Template(name="test-tmplt", format="html")
             response = client.render('path/to/file.html', template_data,  render_data=[data1, data2])
@@ -666,8 +666,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             file_data = ...  # filepath str, encoded css string, or BytesIO
             template_data = StyleFile(...)  # fill with your template data
@@ -701,12 +701,16 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+        
             client = PDFClient('your-api-key')
             file_data = ... # filepath str, encoded css string, or BytesIO
             template_data = ImageFile(...)  # fill with your template data
             response = client.add_image('your-template-id', file_data, template_data)
+         
+        .. html
+
+        
         """
         _files = {
             'file_data': _read_file(file_data), 
@@ -733,8 +737,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             success = client.delete_template('your-template-id')
         """
@@ -761,8 +765,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             render_data = {...}
             render_options = RenderOptions(...)
@@ -798,8 +802,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             render_data_list = [...]
             render_options = RenderOptions(...)
@@ -830,8 +834,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             success = client.delete_stylesheet('your-stylesheet-id')
         """
@@ -852,9 +856,6 @@ class PDFClient:
 
         Raises HTTPError if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
-
         """
         response = requests.get(
             url=f"{self.base_url}/template/file/{template_id}",
@@ -873,8 +874,8 @@ class PDFClient:
 
         Raises HTTPError if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = FastPDFClient('your-api-key')
             file_data = client.get_stylesheet('your-stylesheet-id')
             client.save(file_data, 'stylesheet.css')
@@ -896,8 +897,8 @@ class PDFClient:
 
         Raises HTTPError if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = FastPDFClient('your-api-key')
             success = client.delete_image('your-image-id')
         """
@@ -918,8 +919,8 @@ class PDFClient:
 
         Raises PDFException if the request to the FastPDF service fails.
 
-        Example usage:
-        ::
+        Example usage::
+
             client = PDFClient('your-api-key')
             image_file = client.get_image('your-image-id')
         """
