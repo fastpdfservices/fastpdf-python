@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/fastpdf/badge/?version=latest)](https://fastpdf.readthedocs.io/en/latest/?badge=latest)
+
 # FastPDF Python Package
 
 Welcome to **fastpdf** Python Package, the versatile and quick solution for your PDF rendering needs. This package is a SDK for fastpdfservice.com REST API.
