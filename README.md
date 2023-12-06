@@ -1,4 +1,5 @@
 [![Documentation Status](https://readthedocs.org/projects/fastpdf/badge/?version=latest)](https://fastpdf.readthedocs.io/en/latest/?badge=latest)
+[![PyPI version](https://img.shields.io/pypi/v/fastpdf.svg)](https://pypi.org/project/fastpdf/)
 
 # FastPDF Python Package
 
