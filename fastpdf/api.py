@@ -934,28 +934,28 @@ class PDFClient:
         
     # Convenience functions for each format
     def render_template_to_pdf(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'pdf')
+        return self.render_template(template_id, render_data, format_type='pdf')
 
     def render_template_to_docx(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'docx')
+        return self.render_template(template_id, render_data, format_type='docx')
 
     def render_template_to_odp(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'odp')
+        return self.render_template(template_id, render_data, format_type='odp')
 
     def render_template_to_ods(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'ods')
+        return self.render_template(template_id, render_data, format_type='ods')
 
     def render_template_to_odt(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'odt')
+        return self.render_template(template_id, render_data, format_type='odt')
 
     def render_template_to_pptx(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'pptx')
+        return self.render_template(template_id, render_data, format_type='pptx')
 
     def render_template_to_xlx(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'xlx')
+        return self.render_template(template_id, render_data, format_type='xlx')
 
     def render_template_to_xls(self, template_id: str, render_data: Union[dict, str]) -> bytes:
-        return self.render_template(template_id, render_data, 'xls')
+        return self.render_template(template_id, render_data, format_type='xls')
         
         
         
