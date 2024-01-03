@@ -337,6 +337,34 @@ class PDFClient:
         _raise_for_status(response)
         return response.content
         
+    
+    def encrypt(self, file: Union[str, BytesIO, bytes], password: str) -> bytes:
+       """
+       Encrypt a PDF file with a password.
+
+       :param file: Path to the file or file-like object of the PDF to encrypt.
+       :param password: Password to encrypt the PDF.
+       :return: Content of the encrypted PDF file as bytes.
+
+       Raises PDFException if the request to the FastPDF service fails.
+
+       Example usage::
+
+           client = PDFClient('your-api-key')
+           encrypted_pdf_content = client.encrypt('path/to/your.pdf', password='your_password')
+       """
+       files = {'file': _read_file(file)}
+       options = {'password': password}
+       data = {'options': json.dumps(options)}
+       response = requests.post(
+           url=f"{self.base_url}/pdf/encrypt",
+           headers=self.headers,
+           files=files,
+           data=data
+       )
+       _raise_for_status(response)
+       return response.content
+
         
     def url_to_pdf(self, url: str) -> bytes:
         """
