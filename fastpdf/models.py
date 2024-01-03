@@ -62,6 +62,7 @@ class Template:
     print_background: Optional[bool] = field(default=None)
     page_range: Optional[str] = field(default=None)
     scale: Optional[float] = field(default=None)
+    encrypt_password: Optional[str] = field(default=None)
     
     margin_top: Optional[float] = field(default=None)
     margin_right: Optional[float] = field(default=None)

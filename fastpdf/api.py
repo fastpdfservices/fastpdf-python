@@ -354,7 +354,7 @@ class PDFClient:
            encrypted_pdf_content = client.encrypt('path/to/your.pdf', password='your_password')
        """
        files = {'file': _read_file(file)}
-       options = {'password': password}
+       options = {'encrypt_password': password}
        data = {'options': json.dumps(options)}
        response = requests.post(
            url=f"{self.base_url}/pdf/encrypt",
