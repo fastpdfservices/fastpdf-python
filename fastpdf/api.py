@@ -389,7 +389,7 @@ class PDFClient:
         return response.content
         
         
-    def render_barcodes(self, data: str, barcode_format: str = 'code128', 
+    def render_barcode(self, data: str, barcode_format: str = 'code128', 
                         render_options: RenderOptions=None) -> bytes:
         """
         Renders a barcode PDF based on the provided data and barcode format.
@@ -414,7 +414,7 @@ class PDFClient:
             'codabar', 'code128', 'code39', 'ean', 'ean13', 'ean13-guard',
             'ean14', 'ean8', 'ean8-guard', 'gs1', 'gs1_128', 'gtin', 'isbn',
             'isbn10', 'isbn13', 'issn', 'itf', 'jan', 'nw-7', 'pzn', 'upc',
-            'upca'
+            'upca', 'qr', 'pdf417', 'datamatrix', 'ean5', 'postnet', 'msi'
         ]
         if barcode_format not in _available_formats:
            raise ValueError(f'Invalid barcode type: {barcode_format}')
